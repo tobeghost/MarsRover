@@ -16,7 +16,6 @@ The position is made up of two integers and a letter separated by spaces, corres
 
 ### Expected Output 1
     1 3 N
-    5 1 E
 
 ### Test Input 2
     5 5
