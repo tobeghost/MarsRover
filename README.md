@@ -9,17 +9,19 @@ The first line of input is the upper-right coordinates of the plateau, the lower
 
 The position is made up of two integers and a letter separated by spaces, corresponding to the x and y co-ordinates and the rover's orientation. Each rover will be finished sequentially, which means that the second rover won't start to move until the first one has finished moving. Output: The output for each rover should be its final co-ordinates and heading. Input and Output
 
-# Test Input
-<code>
-5 5
-1 2 N 
-LMLMLMLMM 
-3 3 E 
-MMRMMRMRRM
-</code>
+# Test Input 1
+<code>5 5</code>
+<code>1 2 N</code>
+<code>LMLMLMLMM</code>
 
-# Expected Output
-<code>
-1 3 N
-5 1 E
-</code>
+# Expected Output 1
+<code>1 3 N</code>
+
+# Test Input 2
+<code>5 5</code>
+<code>3 3 E</code>
+<code>MMRMMRMRRM</code>
+
+# Expected Output 2
+<code>1 3 N</code>
+<code>5 1 E</code>
