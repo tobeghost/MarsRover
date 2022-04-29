@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EventFlow" Version="0.83.4713" />
+  </ItemGroup>
+
 </Project>
