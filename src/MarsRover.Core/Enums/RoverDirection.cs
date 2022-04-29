@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarsRover.Domain.Enums
+namespace MarsRover.Core.Enums
 {
-    public enum Directions
+    public enum RoverDirection
     {
         N = 1,
         E,
