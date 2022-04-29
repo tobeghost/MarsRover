@@ -2,13 +2,16 @@
 {
     public class SurfaceSize
     {
-        public int Width;
-        public int Height;
+        public int Width { get; set; }
+        public int Height { get; set; }
 
-        public SurfaceSize(int width, int height)
+        public static implicit operator SurfaceSize(string value)
         {
-            Width = width;
-            Height = height;
+            var size = value.Split(' ');
+            var result = new SurfaceSize();
+            result.Width = int.Parse(size[0]);
+            result.Height = int.Parse(size[1]);
+            return result;
         }
     }
 }

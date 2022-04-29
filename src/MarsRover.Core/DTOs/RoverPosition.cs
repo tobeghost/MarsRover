@@ -13,11 +13,14 @@ namespace MarsRover.Core.DTOs
         public int Y { get; set; }
         public RoverDirection Direction { get; set; }
 
-        public RoverPosition(RoverDirection direction = RoverDirection.N, int x = 0, int y = 0)
+        public static implicit operator RoverPosition(string value)
         {
-            this.X = x;
-            this.Y = y;
-            this.Direction = direction;
+            var size = value.Split(' ');
+            var result = new RoverPosition();
+            result.X = int.Parse(size[0]);
+            result.Y = int.Parse(size[1]);
+            result.Direction = Enum.Parse<RoverDirection>(size[2]);
+            return result;
         }
     }
 }

@@ -1,7 +1,5 @@
-﻿using MarsRover.Core.Commands;
-using MarsRover.Core.DTOs;
+﻿using MarsRover.Core.DTOs;
 using MarsRover.Core.Enums;
-using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,31 +8,30 @@ using System.Threading.Tasks;
 
 namespace MarsRover.Core.Handlers
 {
-    public class RoverHandler : INotificationHandler<RoverCommand>
+    public class RoverHandler
     {
-        private readonly IMediator _mediator;
-
-        public RoverHandler(IMediator mediator)
+        public void Handle(Rover Rover, string NewCommand)
         {
-            _mediator = mediator;
-        }
-
-        public Task Handle(RoverCommand notification, CancellationToken cancellationToken)
-        {
-            if (!string.IsNullOrEmpty(notification.NewCommand))
+            if (!string.IsNullOrEmpty(NewCommand))
             {
-                foreach (var item in notification.NewCommand.ToUpper())
+                foreach (var item in NewCommand.ToUpper())
                 {
                     switch (item)
                     {
-                        case 'L': _mediator.Send(new MoveRoverCommand() { Rover = notification.Rover, Movement = Movement.L }); break;
-                        case 'R': _mediator.Send(new MoveRoverCommand() { Rover = notification.Rover, Movement = Movement.R }); break;
-                        case 'M': _mediator.Send(new MoveRoverCommand() { Rover = notification.Rover, Movement = Movement.M }); break;
+                        case 'L':
+                            new MoveRoverHandler().Handle(Rover, Movement.L);
+                            break;
+
+                        case 'R':
+                            new MoveRoverHandler().Handle(Rover, Movement.R);
+                            break;
+
+                        case 'M':
+                            new MoveRoverHandler().Handle(Rover, Movement.M);
+                            break;
                     }
                 }
             }
-
-            return Task.CompletedTask;
         }
     }
 }

@@ -1,7 +1,5 @@
-﻿using MarsRover.Core.Commands;
-using MarsRover.Core.DTOs;
+﻿using MarsRover.Core.DTOs;
 using MarsRover.Core.Enums;
-using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +8,22 @@ using System.Threading.Tasks;
 
 namespace MarsRover.Core.Handlers
 {
-    public class MoveRoverHandler : INotificationHandler<MoveRoverCommand>
+    public class MoveRoverHandler
     {
-        public Task Handle(MoveRoverCommand notification, CancellationToken cancellationToken)
+        public void Handle(Rover Rover, Movement Movement)
         {
-            if (notification.Movement == Movement.L)
+            if (Movement == Movement.L)
             {
-                TurnLeft(notification.Rover);
+                TurnLeft(Rover);
             }
-            else if (notification.Movement == Movement.R)
+            else if (Movement == Movement.R)
             {
-                TurnRight(notification.Rover);
+                TurnRight(Rover);
             }
-            else if (notification.Movement == Movement.M)
+            else if (Movement == Movement.M)
             {
-                Move(notification.Rover);
+                Move(Rover);
             }
-
-            return Task.CompletedTask;
         }
 
         private void TurnLeft(Rover rover)
@@ -61,10 +57,10 @@ namespace MarsRover.Core.Handlers
 
             switch (rover.Position.Direction)
             {
-                case RoverDirection.N: roverY++; break;
-                case RoverDirection.S: roverY--; break;
-                case RoverDirection.W: roverX--; break;
-                case RoverDirection.E: roverX++; break;
+                case RoverDirection.N: rover.Position.Y++; break;
+                case RoverDirection.S: rover.Position.Y--; break;
+                case RoverDirection.W: rover.Position.X--; break;
+                case RoverDirection.E: rover.Position.X++; break;
                 default:
                     throw new InvalidOperationException();
             }
